@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Status Check</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0A;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #2A2A2A;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #10B981;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .btn {
+            background: #7C3AED;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .btn:hover {
+            background: #8B5CF6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ Mission Control</h1>
+            <p>Robbie Hunt HQ - Agent Organization Dashboard</p>
+            <p><span class="status"></span> Server Connection: <strong>ACTIVE</strong></p>
+        </div>
+
+        <div class="card">
+            <h2>✅ Connection Test Successful!</h2>
+            <p>If you can see this page, the server is working and accessible at:</p>
+            <p><strong>http://172.18.0.3:8000</strong></p>
+            
+            <h3>Next Steps:</h3>
+            <ul>
+                <li>This confirms network connectivity is working</li>
+                <li>The full Next.js dashboard will be available shortly</li>
+                <li>Try the Next.js version at: <strong>http://172.18.0.3:3000</strong></li>
+            </ul>
+        </div>
+
+        <div class="agent-grid">
+            <div class="card">
+                <h3>🛡️ Sentinel (CEO Agent)</h3>
+                <p><span class="status"></span> Status: Active</p>
+                <p>Currently monitoring system performance</p>
+            </div>
+
+            <div class="card">
+                <h3>📈 Renee Rivkin (Division 1)</h3>
+                <p><span class="status"></span> Status: Busy</p>
+                <p>Wealth & Investments - Analyzing market trends</p>
+            </div>
+
+            <div class="card">
+                <h3>💪 Greg Welch (Division 2)</h3>
+                <p><span class="status"></span> Status: Active</p>
+                <p>Health & Performance - Generating health report</p>
+            </div>
+
+            <div class="card">
+                <h3>📊 Adam Curwood (Division 3)</h3>
+                <p><span class="status" style="background: #6B7280;"></span> Status: Idle</p>
+                <p>Business Intelligence</p>
+            </div>
+
+            <div class="card">
+                <h3>🏠 Shelley Vidikey (Division 4)</h3>
+                <p><span class="status" style="background: #F59E0B;"></span> Status: Busy</p>
+                <p>Personal & Household - Planning renovation updates</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Mission Statement</h2>
+            <p style="font-style: italic; font-size: 18px; text-align: center; color: #7C3AED;">
+                "Build an autonomous organization of AI agents that do work for me and produce value 24/7."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Update time every second
+        setInterval(() => {
+            const now = new Date();
+            const timeString = now.toLocaleString('en-AU', {
+                timeZone: 'Australia/Melbourne',
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+            });
+            document.title = `Mission Control - ${timeString} AEST`;
+        }, 1000);
+    </script>
+</body>
+</html>
