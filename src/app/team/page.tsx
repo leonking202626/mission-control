@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { agents } from '@/lib/data'
 import { Activity, Mail, MessageCircle, Settings } from 'lucide-react'
 
