@@ -1,3 +1,4 @@
+'use client';
 // @ts-nocheck
 import { useState, useEffect } from 'react';
 import { Activity, Mail, MessageCircle, Settings } from 'lucide-react'
