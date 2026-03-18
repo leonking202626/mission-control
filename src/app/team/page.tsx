@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { agents } from '@/lib/data'
+import { useState, useEffect } from 'react';
 import { Activity, Mail, MessageCircle, Settings } from 'lucide-react'
 
 function AgentCard({ agent, isHuman = false, isLeader = false }: { 
@@ -78,7 +78,7 @@ function AgentCard({ agent, isHuman = false, isLeader = false }: {
   )
 }
 
-function OrgChart() {
+function OrgChart({ agents }) {
   const leon = agents.find(a => a.id === 'leon')!
   const sentinel = agents.find(a => a.id === 'sentinel')!
   const divisionAgents = agents.filter(a => a.id !== 'leon' && a.id !== 'sentinel')
@@ -127,7 +127,7 @@ function OrgChart() {
   )
 }
 
-function TeamStats() {
+function TeamStats({ agents }) {
   const totalAgents = agents.length - 1 // Exclude Leon
   const activeAgents = agents.filter(a => a.status === 'active' && a.id !== 'leon').length
   const busyAgents = agents.filter(a => a.status === 'busy').length
@@ -159,6 +159,25 @@ function TeamStats() {
 }
 
 export default function TeamPage() {
+
+// ---> PASTE ALL OF THIS NEW LIVE WIRE CODE HERE <---
+const [liveAgents, setLiveAgents] = useState([]);
+
+useEffect(() => {
+const fetchLiveSwarm = async () => {
+try {
+const response = await fetch('http://127.0.0.1:18789/api/agents');
+const data = await response.json();
+setLiveAgents(data);
+} catch (error) {
+console.error("Mission Control lost connection:", error);
+}
+};
+
+fetchLiveSwarm();
+const heartbeat = setInterval(fetchLiveSwarm, 2000);
+return () => clearInterval(heartbeat);
+}, []);
   return (
     <div className="space-y-8">
       <div>
@@ -177,13 +196,13 @@ export default function TeamPage() {
       </div>
 
       {/* Team Stats */}
-      <TeamStats />
+<TeamStats agents={liveAgents} />
 
-      {/* Organization Chart */}
-      <div className="card p-8">
-        <h2 className="text-xl font-semibold mb-8 text-center">Organization Structure</h2>
-        <OrgChart />
-      </div>
+{/* Organization Chart */}
+<div className="card p-8">
+<h2 className="text-xl font-semibold mb-8 text-center">Organization Structure</h2>
+<OrgChart agents={liveAgents} />
+</div>
 
       {/* Division Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
