@@ -79,7 +79,7 @@ function AgentCard({ agent, isHuman = false, isLeader = false }: {
   )
 }
 
-function OrgChart({ agents }: { agents: any }) {
+function OrgChart({ agents }: { agents: any[] }) {
   const leon = agents.find(a => a.id === 'leon')!
   const sentinel = agents.find(a => a.id === 'sentinel')!
   const divisionAgents = agents.filter(a => a.id !== 'leon' && a.id !== 'sentinel')
@@ -128,7 +128,7 @@ function OrgChart({ agents }: { agents: any }) {
   )
 }
 
-function TeamStats({ agents }: { agents: any }) {
+function TeamStats({ agents }: { agents: any[] }) {
   const totalAgents = agents.length - 1 // Exclude Leon
   const activeAgents = agents.filter(a => a.status === 'active' && a.id !== 'leon').length
   const busyAgents = agents.filter(a => a.status === 'busy').length
