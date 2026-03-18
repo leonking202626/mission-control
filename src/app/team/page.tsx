@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react';
 import { Activity, Mail, MessageCircle, Settings } from 'lucide-react'
 
-function AgentCard({ agent, isHuman = false, isLeader = false }: { 
-  agent: any; 
-  isHuman?: boolean; 
-  isLeader?: boolean; 
+function AgentCard({ agent, isHuman = false, isLeader = false }: {
+agent: any;
+isHuman?: boolean;
+isLeader?: boolean;
 }) {
-  const statusColors: any = {
+if (!agent) return null;
+
+const statusColors: any = {
     active: 'bg-status-active',
     busy: 'bg-status-busy', 
     idle: 'bg-status-idle'
