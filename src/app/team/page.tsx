@@ -8,13 +8,13 @@ function AgentCard({ agent, isHuman = false, isLeader = false }: {
   isHuman?: boolean; 
   isLeader?: boolean; 
 }) {
-  const statusColors = {
+  const statusColors: any = {
     active: 'bg-status-active',
     busy: 'bg-status-busy', 
     idle: 'bg-status-idle'
   }
 
-  const statusLabels = {
+  const statusLabels: any = {
     active: 'Active',
     busy: 'Busy',
     idle: 'Idle'
